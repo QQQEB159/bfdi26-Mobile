@@ -10,6 +10,30 @@ import llua.*;
 import llua.Lua;
 #end
 
+//Mobile Controls
+import funkin.mobile.objects.MobileControls;
+import funkin.mobile.objects.IMobileControls;
+import funkin.mobile.objects.Hitbox;
+import funkin.mobile.objects.TouchPad;
+import funkin.mobile.objects.TouchButton;
+import funkin.mobile.input.MobileInputID;
+import funkin.mobile.backend.MobileData;
+import funkin.mobile.input.MobileInputManager;
+import funkin.mobile.backend.TouchUtil;
+
+// Android
+#if android
+import android.content.Context as AndroidContext;
+import android.widget.Toast as AndroidToast;
+import android.os.Environment as AndroidEnvironment;
+import android.Permissions as AndroidPermissions;
+import android.Settings as AndroidSettings;
+import android.Tools as AndroidTools;
+import android.os.Build.VERSION as AndroidVersion;
+import android.os.Build.VERSION_CODES as AndroidVersionCode;
+import android.os.BatteryManager as AndroidBatteryManager;
+#end
+
 #if sys
 import sys.*;
 import sys.io.*;
@@ -26,6 +50,7 @@ import funkin.backend.Conductor;
 import funkin.backend.BaseStage;
 import funkin.backend.Difficulty;
 import funkin.backend.Mods;
+import funkin.mobile.backend.StorageUtil;
 
 import funkin.data.Controls;
 import funkin.data.ClientPrefs;
@@ -63,6 +88,7 @@ import flixel.sound.FlxSound;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxCamera;
+import flixel.util.FlxDestroyUtil;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;

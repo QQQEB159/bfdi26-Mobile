@@ -2,10 +2,6 @@ package;
 
 import Type;
 
-#if android
-import android.content.Context;
-#end
-
 import funkin.api.FPSCounter;
 
 import flixel.addons.transition.FlxTransitionableState;
@@ -27,6 +23,7 @@ import openfl.text.TextFormat;
 
 import lime.app.Application;
 import lime.graphics.Image;
+import lime.system.System as LimeSystem;
 
 //crash handler stuff
 #if CRASH_HANDLER
@@ -47,6 +44,10 @@ import hl.Gc;
 import java.vm.Gc;
 #elseif neko
 import neko.vm.Gc;
+#end
+
+#if COPYSTATE_ALLOWED
+import funkin.states.CopyState;
 #end
 
 // NATIVE API STUFF, YOU CAN IGNORE THIS AND SCROLL //
@@ -82,23 +83,27 @@ class Main extends Sprite
 	public static function main():Void
 	{
 		Lib.current.addChild(new Main());
+		#if cpp
+        cpp.NativeGc.enable(true);
+        cpp.NativeGc.run(true);
+        #end
 	}
 
 	public function new()
 	{
 		super();
+		
+		#if mobile
+		#if android
+		StorageUtil.requestPermissions();
+		#end
+		Sys.setCwd(StorageUtil.getStorageDirectory());
+		#end
 
 		#if (windows && cpp)
 		funkin.api.Windows.fixScaling();
 		funkin.api.NativeAPI.setDarkMode(null, true);
 		funkin.api.system.AudioSwitchFix.init();
-		#end
-
-		// Credits to MAJigsaw77 (he's the og author for this code)
-		#if android
-		Sys.setCwd(Path.addTrailingSlash(Context.getExternalFilesDir()));
-		#elseif ios
-		Sys.setCwd(lime.system.System.applicationStorageDirectory);
 		#end
 
 		var _game = new FlxGame(game.width, game.height, game.firstState, game.fps, game.fps, game.skipSplash, game.startFullscreen);
@@ -123,13 +128,15 @@ class Main extends Sprite
 			Main.skipNextDump = false;
 		});
 
-		#if !mobile
 		fpsVar = new FPSCounter(10, 3, 0xFFFFFF);
+		#if !mobile
 		addChild(fpsVar);
+		#else
+		FlxG.game.addChild(fpsVar);
+		#end
 		Lib.current.stage.align = "tl";
 		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
 		fpsVar.visible = ClientPrefs.data.showFPS;
-		#end
 
 		#if linux
 		var icon = Image.fromFile("icon.png");
@@ -147,6 +154,7 @@ class Main extends Sprite
 
 		loadBanList();
 
+		#if DISCORD_ALLOWED
 		if (banlist.contains(DiscordClient.userId))
 		{
 			FlxG.save.data.bannedhaha = true;
@@ -154,7 +162,15 @@ class Main extends Sprite
 			#if debug trace('ur banned'); #end
 		} #if debug else trace('ur not banned'); #end
 		trace(banlist);
+		#end
 
+		#if android
+		FlxG.android.preventDefaultKeys = [BACK];
+		#end
+		#if mobile
+		LimeSystem.allowScreenTimeout = ClientPrefs.data.screensaver;
+		#end
+		
 		// shader coords fix
 		FlxG.signals.focusGained.add(function() {
 			onResize();
@@ -243,11 +259,11 @@ class Main extends Sprite
 		var stackTraceString = exception + StringTools.trim(CallStack.toString(CallStack.exceptionStack(true)));
 		var dateNow:String = Date.now().toString().replace(" ", "_").replace(":", "'");
 
-		path = './crash/BFDI26_${dateNow}.txt';
+		path = 'crash/BFDI26_${dateNow}.txt';
 		var normalPath:String = Path.normalize(path);
 
 		#if sys
-		if (!FileSystem.exists("./crash/")) FileSystem.createDirectory("./crash/");
+		if (!FileSystem.exists("crash/")) FileSystem.createDirectory("crash/");
 		File.saveContent(path, '${stackTraceString}\n');
 		#end
 
@@ -271,11 +287,11 @@ class Main extends Sprite
 		var stackTraceString = exception + StringTools.trim(CallStack.toString(CallStack.exceptionStack(true)));
 		var dateNow:String = Date.now().toString().replace(" ", "_").replace(":", "'");
 
-		path = './crash/BFDI26_${dateNow}.txt';
+		path = 'crash/BFDI26_${dateNow}.txt';
 		var normalPath:String = Path.normalize(path);
 
 		#if sys
-		if (!FileSystem.exists("./crash/")) FileSystem.createDirectory("./crash/");
+		if (!FileSystem.exists("crash/")) FileSystem.createDirectory("crash/");
 		File.saveContent(path, '${stackTraceString}\n');
 		#end
 

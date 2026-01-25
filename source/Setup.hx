@@ -5,6 +5,10 @@ import openfl.display.BitmapData;
 import openfl.system.Capabilities;
 import flixel.util.typeLimit.NextState;
 
+#if COPYSTATE_ALLOWED
+import funkin.states.CopyState;
+#end
+
 class Setup extends flixel.FlxState
 {
     public static var muteKeys:Array<FlxKey> = [FlxKey.ZERO];
@@ -42,6 +46,8 @@ class Setup extends flixel.FlxState
 		Controls.instance = new Controls();
 		ClientPrefs.loadDefaultKeys();
 		ClientPrefs.loadPrefs();
+		
+		MobileData.init();
 
 		if (Main.fpsVar.visible) Main.fpsVar.visible = false;
 
@@ -71,7 +77,16 @@ class Setup extends flixel.FlxState
 			openfl.Lib.application.window.resizable = true;
 			
 			final nextState:Null<NextState> = (!FlxG.save.data.modNotice ? funkin.states.BootFlashingState.new : Splash.new);
+			#if COPYSTATE_ALLOWED
+			if(!CopyState.checkExistingFiles())
+			{
+			    FlxG.switchState(CopyState.new);
+			}
+			else FlxG.switchState(nextState);
+			
+			#else
 			FlxG.switchState(nextState);
+			#end
 		}, true);
 
 		trace(FlxG.save.data.bannedhaha);
