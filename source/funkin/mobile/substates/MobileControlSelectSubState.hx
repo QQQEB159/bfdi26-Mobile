@@ -26,7 +26,7 @@ import flixel.FlxObject;
 import flixel.addons.display.FlxBackdrop;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.util.FlxGradient;
-import mobile.backend.TouchUtil;
+import funkin.mobile.backend.TouchUtil;
 import flixel.input.touch.FlxTouch;
 import flixel.ui.FlxButton as UIButton;
 
