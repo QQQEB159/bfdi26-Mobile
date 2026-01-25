@@ -11,7 +11,9 @@ import funkin.backend.Section;
 import funkin.backend.Rating;
 import funkin.backend.PsychCamera;
 
+#if DISCORD_ALLOWED
 import hxdiscord_rpc.Discord;
+#end
 
 import funkin.data.Highscore;
 import funkin.data.ModSave;
@@ -703,9 +705,9 @@ class PlayState extends MusicBeatState
 			}
 		#end
 
+		#if DISCORD_ALLOWED
 		DiscordClient.changePresence('');
 		//HINT
-		#if DISCORD_ALLOWED
 		for (i in 0...list.length) //REWRITE LATERO
 		{
 			if (PlayState.SONG.song.toLowerCase() == '${list[i][0]}') {
@@ -2529,9 +2531,10 @@ class PlayState extends MusicBeatState
 				{
 					Mods.loadTopMod();
 					FlxG.sound.playMusic(Paths.music('freakyMenu'));
-					#if DISCORD_ALLOWED DiscordClient.resetClientID(); #end
-
+					#if DISCORD_ALLOWED 
+					DiscordClient.resetClientID();
 					DiscordClient.set_clientID("1260051488265470014");
+					#end
 					FlxG.switchState(funkin.states.NewMain.new);
 
 					// if ()
@@ -2562,9 +2565,10 @@ class PlayState extends MusicBeatState
 			else
 			{
 				Mods.loadTopMod();
-				#if DISCORD_ALLOWED DiscordClient.resetClientID(); #end
-
+				#if DISCORD_ALLOWED 
+				DiscordClient.resetClientID();
 				DiscordClient.set_clientID("1260051488265470014");
+				#end
 
 				//really bruh
 				if (FUCKMYLIFE) 

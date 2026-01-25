@@ -39,7 +39,9 @@ class CreditsState extends MusicBeatState
 	{
 		Paths.clearStoredMemory();
 
+		#if DISCORD_ALLOWED
 		DiscordClient.changePresence("BFDI 26 - DEVELOPMENT TEAM", null);
+		#end
 
 		persistentUpdate = true;
 
