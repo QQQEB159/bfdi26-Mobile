@@ -120,7 +120,7 @@ class CoolUtil
 		{
 			FlxG.resizeWindow(Std.int(_windowRes.x), Std.int(_windowRes.y));
 			
-			centerWindowOnPoint(_windowPos);
+			//centerWindowOnPoint(_windowPos);
 		}, onComplete: _ -> 
 		{
 			if (onComplete != null) onComplete();
@@ -135,7 +135,7 @@ class CoolUtil
 			FlxG.resizeWindow(finalvalues[0], finalvalues[1]);
 			FlxG.resizeGame(finalvalues[0], finalvalues[1]);
 
-			centerWindowOnPoint(_windowPos);
+			//centerWindowOnPoint(_windowPos);
 			
 			_windowPos.put(); 
 			_windowPos.put();

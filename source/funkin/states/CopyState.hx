@@ -30,6 +30,7 @@ import openfl.utils.ByteArray;
 import haxe.io.Path;
 import flixel.ui.FlxBar;
 import flixel.ui.FlxBar.FlxBarFillDirection;
+import flixel.util.typeLimit.NextState;
 
 /**
  * ...
@@ -53,6 +54,8 @@ class CopyState extends MusicBeatState
 	var shouldCopy:Bool = false;
 	var canUpdate:Bool = true;
 	var loopTimes:Int = 0;
+	
+	final nextState:Null<NextState> = (!FlxG.save.data.modNotice ? funkin.states.BootFlashingState.new : Splash.new);
 
 	override function create()
 	{
@@ -61,7 +64,7 @@ class CopyState extends MusicBeatState
 		checkExistingFiles();
 		if (maxLoopTimes <= 0)
 		{
-			FlxG.switchState(new Setup());
+			FlxG.switchState(nextState);
 			return;
 		}
 
@@ -113,7 +116,7 @@ class CopyState extends MusicBeatState
 				canUpdate = false;
 				FlxG.sound.play(Paths.sound('confirmMenu')).onComplete = () ->
 				{
-					FlxG.switchState(new Setup());
+					FlxG.switchState(nextState);
 				};
 			}
 

@@ -77,14 +77,14 @@ class ChangelogSubstate extends MusicBeatSubstate
 
 		if (controls.ACCEPT) 
 		{
-			File.saveContent(Sys.getEnv("TEMP")+'\\BFDI 26 V1.7 - Changelog.txt', "BFDI26 v1.7 CHANGELOG
+			/*File.saveContent(Sys.getEnv("TEMP")+'\\BFDI 26 V1.7 - Changelog.txt', "BFDI26 v1.7 CHANGELOG
 			\n MAIN CHANGES:\n- Yoylefake V1.5 - New chromatic, singing, chart, sprites, cutscenes\n- Oneshot V2 - New song, sprites, cutscenes\n- Hey Two & Who's There resprites + recharts\n- Vocal Chords, Time & Invitational & Oneshot Pico mix & Blue Golfball BF mix & Hard Bargain resprites\n- Web Crasher & Hey Two GF mixes\n- Syskill & Evil Song Pico mixes\n- Bossy resprite + Lunchbox mix\n- Invitational DD mix\n- Funny Fellow Spooky mix\n- One original song..?\n- Lots of new funfacts!
 			\n QOL CHANGES:\n- New start screen + notice\n- Functional credits menu\n- New immersive menu sounds\n- Near-complete icon overhaul (save for Himsheys, KMS and Well Rounded)\n- Near-complete titlecard overhaul + new renders\n- Freeplay Dirty Bubble remake\n- RPC image fixes + remakes\n- Hey Two, Who's There, Invitational, Funny Fellow & Bossy thumbnail remakes\n- Swapped vocal tracks for KMS\n- Freeplay asset tweaks + usable scrollbar\n- Himsheys sprite tweaks\n- Hello Operator Chargerblock tweaks\n- Dotted Line sprite tweaks\n- New crash handler screen / bug report screen\n- Usable Data Reset + Individual song reset (Press R in its respective results menu)\n- General optimization
 			\n MISC SONG SPECIFIC CHANGES:\n- Yoylefake - New titlecard n' render\n- Funny Fellow - New BG + RPC image\n- Wrong Finger - New titlecard + renders\n- Vocal Chords - New titlecard\n- Time - New titlecard + remade BG/FG boppers\n- Invitational - New titlecard + BG and BG boppers\n- Hey Two - New RPC\n- Blue Golfball - New titlecard + Sour Apple sprite\n- Blue Golfball BF Mix - new titlecard\n- Hello Operator - New RPC\n- Bossy - New RPC + Cutscene\n- Hard Bargain - New BGs and icons\n- Funny Fellow - BF resprite
 			\n CUT CONTENT:\n- Removed Pls\n- Remove Xara... permanently");
 			new Process("powershell", ['start "'+Sys.getEnv("TEMP")+'\\BFDI 26 V1.7 - Changelog.txt'+'"']);
 					
-			Application.current.window.focus();
+			Application.current.window.focus();*/
 		}
 	}
 }

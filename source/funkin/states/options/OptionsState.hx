@@ -60,7 +60,7 @@ class OptionsState extends MusicBeatState
 		sel.setFormat(Paths.font("Digiface Regular.ttf"), 84, FlxColor.LIME, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(sel);
 
-		border = new FlxSprite().loadImage('menus/border');
+		border = new FlxSprite().loadGraphic(Paths.image('menus/border'));
 		border.scale.set(0.72, 0.72);
 		border.screenCenter();
 		add(border);

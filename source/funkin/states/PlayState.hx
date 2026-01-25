@@ -541,7 +541,7 @@ class PlayState extends MusicBeatState
         redline.scrollFactor.set();
         add(redline);
 
-		reddot = new FlxSprite(-25,693).loadGraphic(Paths.modsImages('hud/reddot'));
+		reddot = new FlxSprite(-25,693).loadGraphic(Paths.image('hud/reddot'));
 		reddot.scale.set(0.5,0.5);
 		reddot.antialiasing = false;
 		add(reddot);
@@ -3661,7 +3661,7 @@ class PlayState extends MusicBeatState
 		#end
 	}
 
-	public function initLuaShader(name:String, ?glslVersion:Int = 120)
+	public function initLuaShader(name:String, ?glslVersion:Int = 100)
 	{
 		if(!ClientPrefs.data.shaders) return false;
 
