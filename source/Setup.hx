@@ -74,7 +74,7 @@ class Setup extends flixel.FlxState
 		
 		CoolUtil.tweenWindowResize({x: 1280, y: 720}, 0.3 * 4, function ()
 		{
-			openfl.Lib.application.window.resizable = true;
+			//openfl.Lib.application.window.resizable = true;
 			
 			final nextState:Null<NextState> = (!FlxG.save.data.modNotice ? funkin.states.BootFlashingState.new : Splash.new);
 			#if COPYSTATE_ALLOWED

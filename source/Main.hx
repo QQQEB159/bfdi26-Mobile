@@ -60,8 +60,8 @@ class Main extends Sprite
 {
 	public static final game = 
 	{
-		width: 1025,
-		height: 577,
+		width: 1280,
+		height: 720,
 		firstState: Setup,
 		fps: 60,
 		skipSplash: true,
@@ -129,11 +129,7 @@ class Main extends Sprite
 		});
 
 		fpsVar = new FPSCounter(10, 3, 0xFFFFFF);
-		#if !mobile
 		addChild(fpsVar);
-		#else
-		FlxG.game.addChild(fpsVar);
-		#end
 		Lib.current.stage.align = "tl";
 		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
 		fpsVar.visible = ClientPrefs.data.showFPS;
@@ -150,7 +146,7 @@ class Main extends Sprite
 		#end
 		#end
 
-		Lib.application.window.resizable = false;
+		//Lib.application.window.resizable = false;
 
 		loadBanList();
 
@@ -236,7 +232,7 @@ class Main extends Sprite
 		}
 		if (FlxG.game != null) resetSpriteCache(FlxG.game);
 		
-		if (fpsVar != null) fpsVar.scaleX = fpsVar.scaleY = Math.max(1, Math.min(w / FlxG.width, h / FlxG.height));
+		if(fpsVar != null) fpsVar.positionFPS(10, 3, Math.min(Lib.current.stage.stageWidth / FlxG.width, Lib.current.stage.stageHeight / FlxG.height));
 	}
 
 	static function resetSpriteCache(sprite:Sprite):Void
