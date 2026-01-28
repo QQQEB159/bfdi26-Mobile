@@ -109,7 +109,7 @@ class CoolUtil
 
 	public static function tweenWindowResize(values:Dynamic, time:Float = 0.3 * 4, ?onComplete:Void->Void = null, big:Bool = false) 
 	{
-		FlxG.updateFramerate = 30; //makes it smoother and consistant
+		//FlxG.updateFramerate = 30; //makes it smoother and consistant
 
 		FlxG.mouse.visible = false;
 
@@ -118,22 +118,22 @@ class CoolUtil
 								
 		_windowTween = FlxTween.tween(_windowRes, values, time, {ease: FlxEase.circInOut, onUpdate: (_) -> 
 		{
-			FlxG.resizeWindow(Std.int(_windowRes.x), Std.int(_windowRes.y));
+			//FlxG.resizeWindow(Std.int(_windowRes.x), Std.int(_windowRes.y));
 			
 			//centerWindowOnPoint(_windowPos);
 		}, onComplete: _ -> 
 		{
 			if (onComplete != null) onComplete();
 
-			var finalvalues = [big ? 1280 : 960, 720];
+			//var finalvalues = [big ? 1280 : 960, 720];
 
-			flixel.system.scaleModes.BaseScaleMode.ogSize = FlxPoint.get(finalvalues[0], finalvalues[1]); //921, 691
+			//flixel.system.scaleModes.BaseScaleMode.ogSize = FlxPoint.get(finalvalues[0], finalvalues[1]); //921, 691
 			FlxG.scaleMode = new flixel.system.scaleModes.RatioScaleMode();
 
 			FlxG.updateFramerate = ClientPrefs.data.framerate;
 
-			FlxG.resizeWindow(finalvalues[0], finalvalues[1]);
-			FlxG.resizeGame(finalvalues[0], finalvalues[1]);
+			//FlxG.resizeWindow(finalvalues[0], finalvalues[1]);
+			//FlxG.resizeGame(finalvalues[0], finalvalues[1]);
 
 			//centerWindowOnPoint(_windowPos);
 			
