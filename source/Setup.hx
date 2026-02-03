@@ -77,16 +77,16 @@ class Setup extends flixel.FlxState
 			//openfl.Lib.application.window.resizable = true;
 			
 			final nextState:Null<NextState> = (!FlxG.save.data.modNotice ? funkin.states.BootFlashingState.new : Splash.new);
-			#if COPYSTATE_ALLOWED
+			/*#if COPYSTATE_ALLOWED
 			if(!CopyState.checkExistingFiles())
 			{
 			    FlxG.switchState(CopyState.new);
 			}
 			else FlxG.switchState(nextState);
 			
-			#else
+			#else*/
 			FlxG.switchState(nextState);
-			#end
+			//#end
 		}, true);
 
 		trace(FlxG.save.data.bannedhaha);

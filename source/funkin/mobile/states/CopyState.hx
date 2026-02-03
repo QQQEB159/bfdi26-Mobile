@@ -20,7 +20,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-package funkin.states;
+package funkin.mobile.states;
 
 #if COPYSTATE_ALLOWED
 import lime.utils.Assets as LimeAssets;
@@ -54,8 +54,6 @@ class CopyState extends MusicBeatState
 	var shouldCopy:Bool = false;
 	var canUpdate:Bool = true;
 	var loopTimes:Int = 0;
-	
-	final nextState:Null<NextState> = (!FlxG.save.data.modNotice ? funkin.states.BootFlashingState.new : Splash.new);
 
 	override function create()
 	{
@@ -64,7 +62,7 @@ class CopyState extends MusicBeatState
 		checkExistingFiles();
 		if (maxLoopTimes <= 0)
 		{
-			FlxG.switchState(nextState);
+			FlxG.switchState(Setup.new);
 			return;
 		}
 
@@ -116,7 +114,7 @@ class CopyState extends MusicBeatState
 				canUpdate = false;
 				FlxG.sound.play(Paths.sound('confirmMenu')).onComplete = () ->
 				{
-					FlxG.switchState(nextState);
+					FlxG.switchState(Setup.new);
 				};
 			}
 
