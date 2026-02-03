@@ -47,7 +47,7 @@ import neko.vm.Gc;
 #end
 
 #if COPYSTATE_ALLOWED
-import funkin.states.CopyState;
+import funkin.mobile.states.CopyState;
 #end
 
 // NATIVE API STUFF, YOU CAN IGNORE THIS AND SCROLL //

@@ -6,7 +6,7 @@ import openfl.system.Capabilities;
 import flixel.util.typeLimit.NextState;
 
 #if COPYSTATE_ALLOWED
-import funkin.states.CopyState;
+import funkin.mobile.states.CopyState;
 #end
 
 class Setup extends flixel.FlxState
