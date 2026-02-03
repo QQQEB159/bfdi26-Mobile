@@ -106,7 +106,7 @@ class Main extends Sprite
 		funkin.api.system.AudioSwitchFix.init();
 		#end
 
-		var _game = new FlxGame(game.width, game.height, game.firstState, game.fps, game.fps, game.skipSplash, game.startFullscreen);
+		var _game = new FlxGame(game.width, game.height, #if COPYSTATE_ALLOWED !CopyState.checkExistingFiles() ? CopyState : #end game.firstState, game.fps, game.fps, game.skipSplash, game.startFullscreen);
 		@:privateAccess _game._customSoundTray = funkin.objects.BFDISoundTray;
 		Setup.loadSave();
 		addChild(_game);
